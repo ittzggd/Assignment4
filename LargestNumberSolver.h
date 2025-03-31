@@ -142,13 +142,15 @@ vector<int> findKthLargest(vector<vector<int>> list, int k)
 		throw invalid_argument("k is not a valid position in the list");
 	}
 
-	for (int i = 0; i < listSize; i++)
+	for (it; it != list.end(); it++)
 	{
 		originalVec.push_back(findLargestLong(*it));
+		cout << findLargestLong(*it) << endl;
 	}
 
-	copy(originalVec.begin(), originalVec.end(), back_inserter(sortedVec));
-	insertionSort(sortedVec, normalCompare);
+	// copy(originalVec.begin(), originalVec.end(), back_inserter(sortedVec));
+	sortedVec = originalVec;
+	insertionSort(sortedVec, Compare);
 
 	kthLargest = sortedVec[index];
 	auto kthIt = find(originalVec.begin(), originalVec.end(), kthLargest);

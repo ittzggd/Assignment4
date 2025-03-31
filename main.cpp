@@ -15,36 +15,28 @@
 int main()
 {
     vector<vector<int>> list = {
-        {7, 42, 97},
-        {88, 51},
-        {15, 63, 21},
-        {99, 100},
-        {3, 8, 14, 27}};
+        {3, 1, 4},
+        {1, 5, 9},
+        {2, 6, 5},
+        {7, 8, 9},
+        {2, 3, 5}};
 
-    vector<int> expectedResults[] = {
-        {99, 100},
-        {7, 42, 97},
-        {88, 51},
-        {15, 63, 21},
-        {3, 8, 14, 27}};
-
-    for (int k = 0; k < 6; ++k)
+    int k = 2;
+    try
     {
-        try
-        {
-            vector<int> result = findKthLargest(list, k);
+        vector<int> result = findKthLargest(list, k);
 
-            cout << "The " << k << "th largest array is: ";
-            for (int num : result)
-            {
-                cout << num << " ";
-            }
-            cout << endl;
-        }
-        catch (const invalid_argument &e)
+        // 결과 출력
+        cout << "The " << k << "th largest array is: ";
+        for (int num : result)
         {
-            cout << "Error: " << e.what() << endl;
+            cout << num << " ";
         }
+        cout << endl;
+    }
+    catch (const invalid_argument &e)
+    {
+        cout << "Error: " << e.what() << endl;
     }
 
     return 0;
