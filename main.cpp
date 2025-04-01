@@ -1,4 +1,5 @@
 #include "LargestNumberSolver.h"
+#include "CollecRunningTime.h"
 
 // int main()
 // {
@@ -14,30 +15,6 @@
 
 int main()
 {
-    vector<vector<int>> list = {
-        {3, 1, 4},
-        {1, 5, 9},
-        {2, 6, 5},
-        {7, 8, 9},
-        {2, 3, 5}};
-
-    int k = 2;
-    try
-    {
-        vector<int> result = findKthLargest(list, k);
-
-        // 결과 출력
-        cout << "The " << k << "th largest array is: ";
-        for (int num : result)
-        {
-            cout << num << " ";
-        }
-        cout << endl;
-    }
-    catch (const invalid_argument &e)
-    {
-        cout << "Error: " << e.what() << endl;
-    }
-
+    MatrixTime();
     return 0;
 }

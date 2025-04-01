@@ -36,12 +36,18 @@ void insertionSort(vector<T> &arr, bool (*Compare)(string, string))
 {
 	T temp;
 	int x;
+	ostringstream oss1;
+	ostringstream oss2;
+	string s1;
+	string s2;
 
 	for (int i = 1; i < arr.size(); i++)
 	{
 		temp = arr[i];
 		x = i - 1;
-		while (x >= 0 && Compare(to_string(temp), to_string(arr[x])))
+		oss1 << temp;
+		oss2 << arr[x];
+		while (x >= 0 && Compare(oss1.str(), oss2.str()))
 		{
 			arr[x + 1] = arr[x];
 			x--;
@@ -129,34 +135,48 @@ long long sum(vector<vector<int>> list)
 
 vector<int> findKthLargest(vector<vector<int>> list, int k)
 {
-	vector<int> originalVec;
-	vector<int> sortedVec;
+	vector<string> originalVec;
+	vector<string> sortedVec;
 	vector<vector<int>>::iterator it = list.begin();
 	int listSize = list.size();
-	int index = listSize - 1 - k;
-	int kthLargest = 0;
+	// int index = listSize - 1 - k;
+	string kthLargest;
 	int kthIndex;
 
-	if (index < 0 || index > listSize - 1)
+	if (k < 0 || k > listSize - 1)
 	{
 		throw invalid_argument("k is not a valid position in the list");
 	}
 
 	for (it; it != list.end(); it++)
 	{
-		originalVec.push_back(findLargestLong(*it));
-		cout << findLargestLong(*it) << endl;
+		originalVec.push_back(findLargestNumber(*it));
+		// cout << findLargestLong(*it) << endl;
 	}
 
 	// copy(originalVec.begin(), originalVec.end(), back_inserter(sortedVec));
 	sortedVec = originalVec;
-	insertionSort(sortedVec, Compare);
+	insertionSort(sortedVec, [](string s1, string s2)
+				  { return s1 > s2; });
 
-	kthLargest = sortedVec[index];
+	kthLargest = sortedVec[k];
 	auto kthIt = find(originalVec.begin(), originalVec.end(), kthLargest);
 	kthIndex = kthIt - originalVec.begin();
 	return list[kthIndex];
 }
+
+// vector<int> findKthLargest(vector<vector<int>> list, int k)
+// {
+// 	if (k < 0 || k >= list.size())
+// 	{
+// 		throw invalid_argument("invalid value k.");
+// 	}
+
+// 	sort(list.begin(), list.end(), [](const vector<int> &n1, const vector<int> &n2)
+// 		 { return findLargestNumber(n1) > findLargestNumber(n2); });
+
+// 	return list[k];
+// }
 
 vector<vector<int>> readFile(string filename)
 {

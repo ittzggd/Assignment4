@@ -6,6 +6,7 @@
         "__split_buffer": "cpp",
         "ratio": "cpp",
         "iostream": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "sstream": "cpp"
     }
 }
